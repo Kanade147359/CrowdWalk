@@ -6,7 +6,6 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -206,8 +205,7 @@ public class MapLink extends OBMapPart implements Comparable<MapLink> {
      * 主観的距離のテーブル。
      * ルールによって可変。
      */
-    protected ConcurrentHashMap<String, Double>
-        mentalLengthTable = new ConcurrentHashMap<>();
+    protected HashMap<String, Double> mentalLengthTable ;
     /**
      * まだ定義されていない主観的距離の値
      */
@@ -328,7 +326,7 @@ public class MapLink extends OBMapPart implements Comparable<MapLink> {
      * mentalLengthTable のクリア。
      */
     public void clearMentalLengthTable() {
-        mentalLengthTable.clear();
+        mentalLengthTable = new HashMap<String, Double>() ;
     }
     
     //------------------------------------------------------------

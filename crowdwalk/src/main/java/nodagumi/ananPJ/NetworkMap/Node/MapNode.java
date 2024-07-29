@@ -2,8 +2,10 @@
 package nodagumi.ananPJ.NetworkMap.Node;
 
 import java.awt.geom.Point2D;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -78,14 +80,13 @@ public class MapNode extends OBMapPart implements Comparable<MapNode> {
     /**
      * ゴールタグ毎の最短経路情報。（物理的距離）
      */
-    private ConcurrentHashMap<String, NavigationHint>
-        physicalHints = new ConcurrentHashMap<>();
+    private HashMap<String, NavigationHint> physicalHints;
 
     /**
      * ゴールタグ毎の最短経路情報。（主観的距離）
      */
-    private ConcurrentHashMap<String, HashMap<String, NavigationHint>>
-        mentalHintsTable = new ConcurrentHashMap<>();
+    private HashMap<String, HashMap<String, NavigationHint>>
+        mentalHintsTable;
 
     public double getX() { return position.getX(); }
     public double getY() { return position.getY(); }
@@ -239,8 +240,9 @@ public class MapNode extends OBMapPart implements Comparable<MapNode> {
      * すべての navigationHinst をくりあ。
      */
     public void clearNavigationHintsAll() {
-        physicalHints.clear();
-        mentalHintsTable.clear();
+        physicalHints = new HashMap<String, NavigationHint>();
+        mentalHintsTable =
+            new HashMap<String, HashMap<String, NavigationHint>>() ;
     }
 
     public void addNavigationHint(Term mentalMode,
@@ -301,7 +303,7 @@ public class MapNode extends OBMapPart implements Comparable<MapNode> {
         return hint;
     }
 
-    public Map<String, NavigationHint> getHints(Term mentalMode) {
+    public HashMap<String, NavigationHint> getHints(Term mentalMode) {
         if(mentalMode == null) {
             return getHints((String)null) ;
         } else {
@@ -309,7 +311,7 @@ public class MapNode extends OBMapPart implements Comparable<MapNode> {
         }
     }
 
-    public Map<String, NavigationHint> getHints(String mentalMode) {
+    public HashMap<String, NavigationHint> getHints(String mentalMode) {
         if(mentalMode == null) {
             return physicalHints ;
         } else {
@@ -454,7 +456,7 @@ public class MapNode extends OBMapPart implements Comparable<MapNode> {
         buff.append("y: ").append(this.getY()).append("\n");
         buff.append("height: ").append(this.getHeight()).append("\n");
         buff.append("tags: ").append(this.getTagString()).append("\n");
-        Map<String, NavigationHint> hints
+        HashMap<String, NavigationHint> hints
             = this.getHints(NavigationHint.DefaultMentalMode) ;
         if (! hints.isEmpty()) {
             buff.append("---- Navigation hints ----\n");
