@@ -13,7 +13,7 @@ def main():
     exit_capacity_list = data["exit_capacity"]
     starting_point_list = data["starting_point"]
     goal_point_list = data["goal_point"]
-    plannedRoute_list = data["plannedRoute"]
+    plannedRoute_list = data["planned_route"]
 
     all_generated_json = []
     path_generated_json = "generation.json"
