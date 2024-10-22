@@ -28,23 +28,11 @@ GuiSimulationLauncher.ini
 # execution result data
 tick.txt
 
-# cache files
-crowdwalk/cache/*
-
-# javadoc files
-crowdwalk/doc/javadoc/*
-
-# screen shots
-crowdwalk/screenshots/*
-
-# log files
-crowdwalk/log/*
-
-# temporary files
-crowdwalk/tmp/*
-
 # vim plugin
 .vimsessions/
 
 # log files/dirs
-/crowdwalk/sample/kawaguchi-S2B/log-S2B
+crowdwalk/*
+floodtocrowdwalk/*
+img2movie/*   
+bin/*
