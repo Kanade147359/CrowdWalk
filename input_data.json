@@ -3,14 +3,14 @@
         "number_of_people": [2067, 4065, 1146 ,1000, 3089],
         "exit_capacity": [2, 2, 2, 2, 2],
         "starting_point": ["START-AM","START-M","START-KB","START-KB", "START-OSS"],
-        "goal_point": [["ID7-1"],["ID7-2"], ["ID1"],["I2-1","ID2-2"],["ID5"]],
+        "goal_point": ["ID7-1","ID7-2", "ID1","I2-1","ID5"],
         "planned_route": [
             ["HR-W-1", "HR-W-2", "HR-W-3", "HR-W-4", "HR-W-5","HR-W-6"],
             ["HR-E-4", "HR-E-5"],
             ["KG-S-3, KG-S-4"],
+            ["KG-S-3"],
             ["KG-N-2", "KG-N-3", "HL-W-1"]
-        ],
-        "chunk_size" : [[],[],[],[500],[]]
+        ]
     },
     "scenario": {
         "number_of_people": [5335, 2067, 4065],

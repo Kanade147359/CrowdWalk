@@ -5,7 +5,7 @@ def increment_time_by_one_second(time_obj):
     new_time_obj = time_obj + timedelta(seconds=1)
     return new_time_obj
 
-def generate_json(number_of_people, exit_capacity, starting_point , goal_point, time_obj, planned_route,chunk_size):
+def generate_json(number_of_people, exit_capacity, starting_point , goal_point, time_obj, planned_route):
     # JSON文字列を保持するリスト
     generated_json = []
     chunk_point = 0
@@ -26,14 +26,6 @@ def generate_json(number_of_people, exit_capacity, starting_point , goal_point, 
         else:
             current_exit_capacity = exit_capacity  # それ以外の時は元のcapacity
 
-        # 行き先の切り替え
-        if chunk_point == len(chunk_size): 
-            break
-        elif i > chunk_size[chunk_point] & chunk_point + 1 < len(chunk_size):
-            chunk_point += 1
-            goal_point_index += 1
-            goal_point = goal_point[goal_point_index]
-
         # エージェントデータの作成
         agent_data = {
             "rule": "EACH",
@@ -42,7 +34,7 @@ def generate_json(number_of_people, exit_capacity, starting_point , goal_point, 
             "total": current_exit_capacity,
             "duration": 60,
             "startPlace": starting_point,
-            "goal": goal_point[goal_point_index],
+            "goal": goal_point,
             "plannedRoute": planned_route,
         }
         # 辞書をリストに追加
