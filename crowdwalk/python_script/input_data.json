@@ -1,7 +1,0 @@
-{
-    "number_of_people": [2067, 4064, 5335],
-    "exit_capacity": [3, 3,3],
-    "starting_point": ["START_KB", "START_AM", "START_KB"],
-    "goal_point": ["ID5","ID6-1", "ID6-2"],
-    "planned_route":[["HL1", "HL2"], ["KB-1", "HR-W-1", "HR-W-2", "HR-W-3","HR-W-4", "HR-W-5"], ["HR-E-3", "HR-E-4", "HR-E-5"]]
-}

@@ -1,0 +1,19 @@
+{
+    "map_file": "Kobe-HarborLand.xml",
+    "generation_file": "generation.json",
+    "scenario_file": "scenario.json",
+
+    "randseed": 2525,
+    "exit_count": 0,
+    "all_agent_speed_zero_break": false,
+
+    "record_simulation_screen":false,
+    "screenshot_dir": "../../screenshots",
+    "clear_screenshot_dir":true,
+    "screenshot_image_type":"png",
+
+    "agent_size": 3.2,
+    "exit_with_simulation_finished": false,
+    "simulation_window_open": false,
+    "auto_simulation_start": false
+}

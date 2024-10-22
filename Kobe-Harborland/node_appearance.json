@@ -1,0 +1,22 @@
+[
+    {
+        "tag" : "EXIT",
+        "2D_View" : {
+            "className" : "RoundNode2D",
+            "parameters" : {
+                "diameter" : 0.5,
+                "color" : "BLACK",
+                "transparency" : 0.3
+            }
+        },
+        "3D_View" : {
+            "className" : "RoundNode3D",
+            "parameters" : {
+                "diameter" : 0.5,
+                "height" : 0.01,
+                "color" : "BLACK",
+                "transparency" : 0.2
+            }
+        }
+    }
+]
