@@ -19,9 +19,10 @@ def generate_json(number_of_people, exit_capacity, starting_point , goal_points,
         current_threshold = thresholds[threshold_index]  # 最初のしきい値
     else:
         current_threshold = float('inf')  # しきい値がない場合は無限大に設定（無限に達しない）
+        
+    number_of_generated_people = 0  # 生成した人数
 
-    current_exit_capacity = exit_capacity  # ループごとに出る人数を変更するため
-    for number_of_generated_people in range(0, number_of_people, current_exit_capacity):
+    while number_of_generated_people < number_of_people:
         # 5秒ごとに exit_capacity を2倍にする
         if (time_obj.second % 5 == 0) and (time_obj.second % 15 != 0):
             current_exit_capacity = exit_capacity * 2
@@ -46,7 +47,7 @@ def generate_json(number_of_people, exit_capacity, starting_point , goal_points,
         generated_json.append(agent_data)
 
         # 生成した人数の合計を更新
-        total_people_generated += current_exit_capacity       
+        number_of_generated_people += current_exit_capacity      
 
         # 合計人数が current_threshold に達したらゴールを変更
         if total_people_generated >= current_threshold:
