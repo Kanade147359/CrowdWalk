@@ -36,3 +36,6 @@ crowdwalk/*
 floodtocrowdwalk/*
 img2movie/*   
 bin/*
+
+*.mp4
+*.mkv
