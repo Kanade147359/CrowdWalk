@@ -14,13 +14,14 @@ def main():
     starting_point_list = data["generation"]["starting_point"]
     goal_point_list = data["generation"]["goal_point"]
     plannedRoute_list = data["generation"]["planned_route"]
+    thresholds = data["generation"]["thresholds"]
 
     all_generated_json = []
     path_generated_json = "generation.json"
     # path_scenario_json = "scenario.json"
     # generate.jsonの生成
-    for number_of_people, exit_capacity, start, goal, planned_route in zip(number_of_people_list, exit_capacity_list, starting_point_list, goal_point_list, plannedRoute_list):
-        generated_json = module.generate_json(number_of_people, exit_capacity, start, goal, time_obj, planned_route)
+    for number_of_people, exit_capacity, start, goal, planned_route,thresholds in zip(number_of_people_list, exit_capacity_list, starting_point_list, goal_point_list, plannedRoute_list, thresholds):
+        generated_json = module.generate_json(number_of_people, exit_capacity, start, goal, time_obj, planned_route, thresholds)
         all_generated_json.extend(generated_json)  # 結果を全体のリストに結合
     # scenario.jsonの生成
     # for number_of_people, exit_capacity, start, goal, plannedRoute in zip(number_of_people_list, exit_capacity_list, starting_point_list, goal_point_list, plannedRoute_list):

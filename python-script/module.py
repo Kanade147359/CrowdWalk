@@ -5,24 +5,29 @@ def increment_time_by_one_second(time_obj):
     new_time_obj = time_obj + timedelta(seconds=1)
     return new_time_obj
 
-def generate_json(number_of_people, exit_capacity, starting_point , goal_point, time_obj, planned_route):
+def generate_json(number_of_people, exit_capacity, starting_point , goal_points, time_obj, planned_route,thresholds):
     # JSON文字列を保持するリスト
     generated_json = []
-    chunk_point = 0
-    # ゴール地点を切り替えるための変数
-    goal_point_index = 0
-    goal_point = goal_point[goal_point_index]
 
-    current_exit_capacity = exit_capacity  # 初期の exit_capacity
-    for i in range(0, number_of_people, current_exit_capacity):
+    total_people_generated = 0  # 生成した人数の合計
+    goal_point_index = 0  # 現在のゴールポイントのインデックス
+    threshold_index = 0  # 現在のthresholdのインデックス
+
+    current_goal = goal_points[goal_point_index]  # 最初のゴールポイント
+        # 空でないthresholdを探す
+    if thresholds and len(thresholds) > 0:
+        current_threshold = thresholds[threshold_index]  # 最初のしきい値
+    else:
+        current_threshold = float('inf')  # しきい値がない場合は無限大に設定（無限に達しない）
+
+    current_exit_capacity = exit_capacity  # ループごとに出る人数を変更するため
+    for number_of_generated_people in range(0, number_of_people, current_exit_capacity):
         # 5秒ごとに exit_capacity を2倍にする
         if (time_obj.second % 5 == 0) and (time_obj.second % 15 != 0):
             current_exit_capacity = exit_capacity * 2
-            number_of_people += exit_capacity
         # 15秒ごとに exit_capacity を3倍にする
         elif time_obj.second % 15 == 0:
             current_exit_capacity = exit_capacity * 3
-            number_of_people += exit_capacity * 2
         else:
             current_exit_capacity = exit_capacity  # それ以外の時は元のcapacity
 
@@ -34,12 +39,31 @@ def generate_json(number_of_people, exit_capacity, starting_point , goal_point, 
             "total": current_exit_capacity,
             "duration": 60,
             "startPlace": starting_point,
-            "goal": goal_point,
+            "goal": current_goal,
             "plannedRoute": planned_route,
         }
         # 辞書をリストに追加
         generated_json.append(agent_data)
 
+        # 生成した人数の合計を更新
+        total_people_generated += current_exit_capacity       
+
+        # 合計人数が current_threshold に達したらゴールを変更
+        if total_people_generated >= current_threshold:
+            total_people_generated = 0  # 合計をリセット
+            goal_point_index += 1  # 次のゴールに切り替え
+            threshold_index += 1  # 次のしきい値に切り替え
+
+            if threshold_index < len(thresholds):
+                current_threshold = thresholds[threshold_index]
+            else:
+                current_threshold = thresholds[-1]  # リストを超えたら最後のしきい値を使う
+
+            if goal_point_index < len(goal_points):
+                current_goal = goal_points[goal_point_index]
+            else:
+                current_goal = goal_points[-1]  # リストを超えたら最後のゴールを使う
+            
         # 時間を1秒進める
         time_obj = increment_time_by_one_second(time_obj)
 
