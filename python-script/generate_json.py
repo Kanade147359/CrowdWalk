@@ -44,7 +44,10 @@ def main():
 
     for number_of_disruptors, timing, starting_points, goal_points, planned_route in zip(number_of_disruptors_list, disruptors_timing_list, disruptors_starting_point_list, disruptors_goal_point_list, disruptors_plannedRoute_list):
         disruptors_json = module.generate_disruptors_json(number_of_disruptors, timing, starting_points , goal_points, planned_route)
+
         all_generated_json.extend(disruptors_json)
+
+
     sorted_generate_json = sorted(all_generated_json, key=lambda x: datetime.strptime(x["startTime"], '%H:%M:%S'))
 
     with open (path_generated_json, 'w') as json_file:

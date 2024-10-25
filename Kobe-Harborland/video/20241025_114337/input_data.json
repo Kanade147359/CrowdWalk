@@ -1,13 +1,12 @@
 {
     "generation": {
-        "number_of_people": [1067,1000, 2065, 2000, 1100, 2046, 2089],
-        "agent_type": [["N",100],["N",100],["N",100],["N",100],["N",100],["N",100],["N",100]],
+        "number_of_people": [2067, 2065, 2000, 1100, 2046, 2089],
+        "agent_type": [["N",100],["N",100],["N",100],["N",100],["N",100],["N",100]],
         "exit_capacity": [2, 2, 2, 2, 2, 2],
-        "starting_point": ["START-AM","START-AM","START-M","START-M-2F","START-KB","START-KB","START-OSS"],
-        "goal_point": [["ID7-1"],["ID7-1"],["ID7-2"],["ID7-2F"], ["ID1"], ["ID-EDU"],["ID5"]],
+        "starting_point": ["START-AM","START-M","START-M-2F","START-KB","START-KB","START-OSS"],
+        "goal_point": [["ID7-1"],["ID7-2"],["ID7-2F"], ["ID1"], ["ID-EDU"],["ID5"]],
         "planned_route": [
             ["HR-W-1", "HR-W-2", "HR-W-3", "HR-W-4", "HR-W-5","HR-W-6"],
-            ["HR-E-1", "HR-E-2"],
             ["HR-E-4", "HR-E-5"],
             ["UMIE-2F-1"],
             ["KG-S-3, KG-S-4"],
@@ -15,7 +14,6 @@
             ["KG-N-2", "KG-N-3", "HL-W-1"]
         ],
         "thresholds": [
-            [],
             [],
             [],
             [],

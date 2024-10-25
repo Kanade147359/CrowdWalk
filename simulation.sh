@@ -4,6 +4,7 @@
 timestamp=$(date +"%Y%m%d_%H%M%S")
 # input_data.json の保存先のフォルダパス 適宜変更
 folder_path="Kobe-Harborland/video/${timestamp}"
+generate_json_path="Kobe-Harborland/generation.json"
 
 python3 python-script/generate_json.py
 mv generation.json Kobe-Harborland/
@@ -18,5 +19,6 @@ if [[ "$*" == *"--record"* ]]; then
 
   # input_data.json を作成したフォルダ内にコピー
   cp input_data.json "${folder_path}/input_data.json"
+  cp ${generate_json_path} "${folder_path}/generation.json"
   echo "input_data.json が ${folder_path}/input_data.json にコピーされました。"
 fi

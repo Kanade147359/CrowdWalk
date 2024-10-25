@@ -803,8 +803,8 @@
     <Node height="0.0" id="osmn_5164285733" x="77926.09241740109" y="146167.63175486831">
       <tag>HR-W-2</tag>
       <link id="_p00105"/>
-      <link id="_p00200"/>
       <link id="_p00201"/>
+      <link id="_p00270"/>
     </Node>
     <Node height="0.0" id="osmn_5164285731" x="77931.40846133008" y="146165.54563570887">
       <tag>highway=crossing</tag>
@@ -823,6 +823,7 @@
       <tag>highway=footway</tag>
     </Link>
     <Node height="0.0" id="osmn_5164285732" x="77945.87711853762" y="146159.89881167468">
+      <tag>HR-E-2</tag>
       <link id="_p00107"/>
       <link id="_p00154"/>
       <link id="_p00155"/>
@@ -874,6 +875,7 @@
       <link id="_p00113"/>
       <link id="_p00207"/>
       <link id="_p00208"/>
+      <link id="_p00269"/>
     </Node>
     <Link from="osmn_5164131643" id="_p00113" length="8.286853899613982" to="osmn_5164131650" width="6.0">
       <tag>highway=footway</tag>
@@ -1150,6 +1152,7 @@
       <tag>highway=footway</tag>
     </Link>
     <Node height="0.0" id="osmn_5164131639" x="77903.08187621982" y="146040.7822909631">
+      <tag>HW-E-3</tag>
       <link id="_p00152"/>
       <link id="_p00214"/>
       <link id="_p00215"/>
@@ -1168,6 +1171,7 @@
       <tag>highway=footway</tag>
     </Link>
     <Node height="0.0" id="osmn_5164131622" x="77966.26285928338" y="146216.7919958791">
+      <tag>HR-E-1</tag>
       <link id="_p00155"/>
       <link id="_p00156"/>
     </Node>
@@ -1443,13 +1447,10 @@
     </Link>
     <Node height="0.0" id="osmn_5164131640" x="77881.94173700639" y="146047.50598098428">
       <link id="_p00199"/>
-      <link id="_p00200"/>
       <link id="_p00213"/>
+      <link id="_p00295"/>
     </Node>
     <Link from="osmn_5164131635" id="_p00199" length="7.955511933563577" to="osmn_5164131640" width="4.0">
-      <tag>highway=footway</tag>
-    </Link>
-    <Link from="osmn_5164131640" id="_p00200" length="127.98235866928403" to="osmn_5164285733" width="2.5">
       <tag>highway=footway</tag>
     </Link>
     <Node height="0.0" id="osmn_5164131623" x="77944.27085067218" y="146217.0998284031">
@@ -1913,5 +1914,20 @@
     <Link from="osmn_7679377178" id="_p00101" length="11.06295669810965" to="osmn_10211755125" width="2.5">
       <tag>highway=footway</tag>
     </Link>
+    <Node height="0.0" id="_p00193" x="77748.27829070397" y="146217.0237816944">
+      <tag>UMIE-S</tag>
+      <link id="_p00268"/>
+      <link id="_p00269"/>
+    </Node>
+    <Node height="0.0" id="_p00253" x="77888.19313331087" y="146064.15749503134">
+      <tag>UMIE-N</tag>
+      <link id="_p00268"/>
+      <link id="_p00270"/>
+      <link id="_p00295"/>
+    </Node>
+    <Link from="_p00193" id="_p00268" length="207.22998040793144" to="_p00253" width="9.0"/>
+    <Link from="_p00193" id="_p00269" length="14.484886708924067" to="osmn_5164131650" width="9.0"/>
+    <Link from="osmn_5164285733" id="_p00270" length="110.19654342746706" to="_p00253" width="2.5"/>
+    <Link from="_p00253" id="_p00295" length="17.78631147301217" to="osmn_5164131640" width="2.5"/>
   </Group>
 </Group>

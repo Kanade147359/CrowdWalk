@@ -92,7 +92,7 @@ def generate_json(number_of_people, agent_type, exit_capacity, starting_point , 
 
 def generate_disruptors_json(number_of_people, timing, starting_point , goal_points, planned_route):
 
-    agent_data = {
+    agent_data = [{
         "rule": "EACH",
         "agentType": {"className": "NaiveAgent"},
         "startTime": timing,
@@ -101,7 +101,7 @@ def generate_disruptors_json(number_of_people, timing, starting_point , goal_poi
         "startPlace": starting_point,
         "goal": goal_points,
         "plannedRoute": planned_route,
-    } 
+    }] 
 
     return agent_data
 
