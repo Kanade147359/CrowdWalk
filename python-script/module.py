@@ -1,11 +1,30 @@
 from datetime import datetime, timedelta
+import random
 import json
 
 def increment_time_by_one_second(time_obj):
     new_time_obj = time_obj + timedelta(seconds=1)
     return new_time_obj
 
-def generate_json(number_of_people, exit_capacity, starting_point , goal_points, time_obj, planned_route,thresholds):
+def generate_agent_type(agent_type):
+    if agent_type[0] == "N":
+        return "NaiveAgent"
+    else:
+        if agent_type[0] == "C":
+            sellected_agent_type = "CapriciousAgent"
+        elif agent_type[0] == "B":
+            sellected_agent_type = "BustleAgent"
+        elif agent_type[0] == "R":
+            sellected_agent_type = "RationalAgent"
+        elif agent_type[0] == "Ruby":
+            sellected_agent_type = "RubyAgent"
+        values = ["NaiveAgent", sellected_agent_type]
+        probabilities = [1-agent_type[1], agent_type[1]]
+
+        return random.choices(values, probabilities)[0]
+
+
+def generate_json(number_of_people, agent_type, exit_capacity, starting_point , goal_points, time_obj, planned_route, thresholds):
     # JSON文字列を保持するリスト
     generated_json = []
 
@@ -14,11 +33,11 @@ def generate_json(number_of_people, exit_capacity, starting_point , goal_points,
     threshold_index = 0  # 現在のthresholdのインデックス
 
     current_goal = goal_points[goal_point_index]  # 最初のゴールポイント
-        # 空でないthresholdを探す
+    # 空でないthresholdを探す
     if thresholds and len(thresholds) > 0:
         current_threshold = thresholds[threshold_index]  # 最初のしきい値
     else:
-        current_threshold = float('inf')  # しきい値がない場合は無限大に設定（無限に達しない）
+        current_threshold = float('inf')  # しきい値がない場合は無限大に設定
         
     number_of_generated_people = 0  # 生成した人数
 
@@ -31,11 +50,12 @@ def generate_json(number_of_people, exit_capacity, starting_point , goal_points,
             current_exit_capacity = exit_capacity * 3
         else:
             current_exit_capacity = exit_capacity  # それ以外の時は元のcapacity
-
+        
+        agent_type = generate_agent_type(agent_type)
         # エージェントデータの作成
         agent_data = {
             "rule": "EACH",
-            "agentType": {"className": "NaiveAgent"},
+            "agentType": {"className": agent_type},
             "startTime": time_obj.strftime("%H:%M:%S"),
             "total": current_exit_capacity,
             "duration": 60,
@@ -70,44 +90,24 @@ def generate_json(number_of_people, exit_capacity, starting_point , goal_points,
 
     return generated_json
 
+def generate_disruptors_json(number_of_people, timing, starting_point , goal_points, planned_route):
+
+    agent_data = {
+        "rule": "EACH",
+        "agentType": {"className": "NaiveAgent"},
+        "startTime": timing,
+        "total": number_of_people,
+        "duration": 60,
+        "startPlace": starting_point,
+        "goal": goal_points,
+        "plannedRoute": planned_route,
+    } 
+
+    return agent_data
+
 def load_data_from_json(filename):
     with open(filename, 'r') as file:
         data = json.load(file)
     return data
-
-def open_mozaic(scenario_json,current_time):
-    scenario_json.append({
-        "type" : "OpenGate",
-        "atTime" : current_time,
-        "gateTag" : "gate_mozaic_north_stairs"
-    },{
-        "type" : "CloseGate",
-        "atTime" : current_time,
-        "gateTag" : "gate_Anpanman_museam"
-    })
-
-def open_Anpanman(scenario_json,current_time):
-    scenario_json.append({
-        "type" : "OpenGate",
-        "atTime" : current_time,
-        "gateTag" : "gate_Anpanman_museam"
-    },{
-        "type" : "CloseGate",
-        "atTime" : current_time,
-        "gateTag" : "gate_mozaic_north_stairs"
-    })
-
-def scenario_json(start_time, end_time, time_delta):
-    
-    scenario_json = []
-    current_time = start_time
-
-    open_mozaic = True
-    while current_time <= end_time:
-        if open_mozaic:
-            open_mozaic(scenario_json)
-        else:
-            open_Anpanman(scenario_json)
-        current_time += time_delta  # 3分進める
 
     
