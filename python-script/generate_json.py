@@ -3,7 +3,10 @@ from datetime import datetime
 import module
 
 def main():
+    # 開始時刻の設定
     time_obj = datetime.strptime("19:00:00", '%H:%M:%S')
+    # 生成したjsonの保存先
+    path_generated_json = "Kobe-Harborland/generation.json"
 
     # データを読み込む
     data = module.load_data_from_json('./input_data.json')
@@ -25,14 +28,14 @@ def main():
     disruptors_plannedRoute_list = data["generation"]["disruptors"]["planned_route"]
 
     all_generated_json = []
-    path_generated_json = "generation.json"
+    
     # path_scenario_json = "scenario.json"
 
     # generate.jsonの生成
     for number_of_people,agent_type, exit_capacity, start, goal, planned_route,thresholds in zip(number_of_people_list, agent_type_list,  exit_capacity_list, starting_point_list, goal_point_list, plannedRoute_list, thresholds):
         generated_json = module.generate_json(number_of_people,agent_type, exit_capacity, start, goal, time_obj, planned_route, thresholds)
         all_generated_json.extend(generated_json)  # 結果を全体のリストに結合
-        
+
     # scenario.jsonの生成
     # for number_of_people, exit_capacity, start, goal, plannedRoute in zip(number_of_people_list, exit_capacity_list, starting_point_list, goal_point_list, plannedRoute_list):
     #     generated_json = module.generate_json(number_of_people, exit_capacity, start, goal, time_obj)
