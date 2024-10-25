@@ -1723,6 +1723,7 @@
       <tag>highway=footway</tag>
     </Link>
     <Node height="0.0" id="osmn_1154650986" x="77808.23302851914" y="145950.7150874521">
+      <tag>HR-W-7</tag>
       <link id="_p00244"/>
       <link id="_p00245"/>
     </Node>

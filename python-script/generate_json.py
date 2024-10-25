@@ -27,6 +27,7 @@ def main():
         disruptors_starting_point_list = data["generation"]["disruptors"]["starting_point"]
         disruptors_goal_point_list = data["generation"]["disruptors"]["goal_point"]
         disruptors_plannedRoute_list = data["generation"]["disruptors"]["planned_route"]
+    
 
     all_generated_json = []
     
@@ -35,6 +36,7 @@ def main():
     # generate.jsonの生成
     for number_of_people,agent_type, exit_capacity, start, goal, planned_route,thresholds in zip(number_of_people_list, agent_type_list,  exit_capacity_list, starting_point_list, goal_point_list, plannedRoute_list, thresholds):
         generated_json = module.generate_json(number_of_people,agent_type, exit_capacity, start, goal, time_obj, planned_route, thresholds)
+
         all_generated_json.extend(generated_json)  # 結果を全体のリストに結合
 
     # scenario.jsonの生成
@@ -45,8 +47,8 @@ def main():
     if data["generation"]["disruptors"]:
         for number_of_disruptors, timing, starting_points, goal_points, planned_route in zip(number_of_disruptors_list, disruptors_timing_list, disruptors_starting_point_list, disruptors_goal_point_list, disruptors_plannedRoute_list):
             disruptors_json = module.generate_disruptors_json(number_of_disruptors, timing, starting_points , goal_points, planned_route)
-
-        all_generated_json.extend(disruptors_json)
+        
+            all_generated_json.extend(disruptors_json)
 
 
     sorted_generate_json = sorted(all_generated_json, key=lambda x: datetime.strptime(x["startTime"], '%H:%M:%S'))

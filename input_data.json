@@ -2,7 +2,7 @@
     "generation": {
         "number_of_people": [1067,1000, 2065, 2000, 1100, 2046, 2089],
         "agent_type": [["N",100],["N",100],["N",100],["N",100],["N",100],["N",100],["N",100]],
-        "exit_capacity": [2, 2, 2, 2, 2, 2],
+        "exit_capacity": [2, 2, 2, 2, 1, 1, 2],
         "starting_point": ["START-AM","START-AM","START-M","START-M-2F","START-KB","START-KB","START-OSS"],
         "goal_point": [["ID7-1"],["ID7-1"],["ID7-2"],["ID7-2F"], ["ID1"], ["ID-EDU"],["ID5"]],
         "planned_route": [
@@ -24,6 +24,11 @@
             []
         ],
         "disruptors" : {
+            "number_of_people":[100,100],
+            "timing":["19:10:00","19:10:00"],
+            "starting_point":["KG-7","HR-W-7"],
+            "goal_point":["KG-S-1","KG-S-1"],
+            "planned_route":[[""],[""]]
         }
     },
     "scenario": {

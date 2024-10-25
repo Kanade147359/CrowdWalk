@@ -10,6 +10,7 @@ def generate_agent_type(agent_type):
     if agent_type[0] == "N":
         return "NaiveAgent"
     else:
+        sellected_agent_type = ""
         if agent_type[0] == "C":
             sellected_agent_type = "CapriciousAgent"
         elif agent_type[0] == "B":
