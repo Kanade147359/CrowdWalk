@@ -24,11 +24,6 @@
             []
         ],
         "disruptors" : {
-            "number_of_people":[50],
-            "timing":["19:10:00"],
-            "starting_point":["KG-7"],
-            "goal_point":["KG-S-1"],
-            "planned_route":[[""]]
         }
     },
     "scenario": {

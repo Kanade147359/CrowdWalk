@@ -21,11 +21,12 @@ def main():
     thresholds = data["generation"]["thresholds"]
 
     # disruptorsのリストを取得
-    number_of_disruptors_list = data["generation"]["disruptors"]["number_of_people"]
-    disruptors_timing_list = data["generation"]["disruptors"]["timing"]
-    disruptors_starting_point_list = data["generation"]["disruptors"]["starting_point"]
-    disruptors_goal_point_list = data["generation"]["disruptors"]["goal_point"]
-    disruptors_plannedRoute_list = data["generation"]["disruptors"]["planned_route"]
+    if data["generation"]["disruptors"]:
+        number_of_disruptors_list = data["generation"]["disruptors"]["number_of_people"]
+        disruptors_timing_list = data["generation"]["disruptors"]["timing"]
+        disruptors_starting_point_list = data["generation"]["disruptors"]["starting_point"]
+        disruptors_goal_point_list = data["generation"]["disruptors"]["goal_point"]
+        disruptors_plannedRoute_list = data["generation"]["disruptors"]["planned_route"]
 
     all_generated_json = []
     
@@ -41,9 +42,9 @@ def main():
     #     generated_json = module.generate_json(number_of_people, exit_capacity, start, goal, time_obj)
     #     all_generated_json.extend(generated_json)  # 結果を全体のリストに結合
     # startTimeでソート
-
-    for number_of_disruptors, timing, starting_points, goal_points, planned_route in zip(number_of_disruptors_list, disruptors_timing_list, disruptors_starting_point_list, disruptors_goal_point_list, disruptors_plannedRoute_list):
-        disruptors_json = module.generate_disruptors_json(number_of_disruptors, timing, starting_points , goal_points, planned_route)
+    if data["generation"]["disruptors"]:
+        for number_of_disruptors, timing, starting_points, goal_points, planned_route in zip(number_of_disruptors_list, disruptors_timing_list, disruptors_starting_point_list, disruptors_goal_point_list, disruptors_plannedRoute_list):
+            disruptors_json = module.generate_disruptors_json(number_of_disruptors, timing, starting_points , goal_points, planned_route)
 
         all_generated_json.extend(disruptors_json)
 
