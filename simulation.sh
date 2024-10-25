@@ -19,6 +19,17 @@ if [[ "$*" == *"--record"* ]]; then
 
   # input_data.json を作成したフォルダ内にコピー
   cp input_data.json "${folder_path}/input_data.json"
-  cp ${generate_json_path} "${folder_path}/generation.json"
-  echo "input_data.json が ${folder_path}/input_data.json にコピーされました。"
+  if [ $? -eq 0 ]; then
+      echo "input_data.json が ${folder_path}/input_data.json にコピーされました。"
+  else
+      echo "Error: input_data.json のコピーに失敗しました。" >&2
+  fi
+
+  # generation.json をコピー
+  cp "${generate_json_path}" "${folder_path}/generation.json"
+  if [ $? -eq 0 ]; then
+      echo "generation.json が ${folder_path}/generation.json にコピーされました。"
+  else
+      echo "Error: generation.json のコピーに失敗しました。" >&2
+  fi
 fi
