@@ -20,6 +20,7 @@ def generate_agent_type(agent_type):
         elif agent_type[0] == "Ruby":
             sellected_agent_type = "RubyAgent"
         values = ["NaiveAgent", sellected_agent_type]
+
         probabilities = [1-agent_type[1], agent_type[1]]
 
         return random.choices(values, probabilities)[0]
@@ -52,11 +53,11 @@ def generate_json(number_of_people, agent_type, exit_capacity, starting_point , 
         else:
             current_exit_capacity = exit_capacity  # それ以外の時は元のcapacity
         
-        agent_type = generate_agent_type(agent_type)
+        current_agent_type = generate_agent_type(agent_type)
         # エージェントデータの作成
         agent_data = {
             "rule": "EACH",
-            "agentType": {"className": agent_type},
+            "agentType": {"className": current_agent_type},
             "startTime": time_obj.strftime("%H:%M:%S"),
             "total": current_exit_capacity,
             "duration": 60,

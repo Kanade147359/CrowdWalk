@@ -1,7 +1,7 @@
 {
     "generation": {
         "number_of_people": [1067,1000, 2065, 2000, 1100, 2046, 2089],
-        "agent_type": [["N",100],["N",100],["N",100],["N",100],["N",100],["N",100],["N",100]],
+        "agent_type": [["B",100],["B",100],["B",100],["B",100],["B",100],["B",100],["B",100]],
         "exit_capacity": [2, 2, 2, 2, 1, 1, 2],
         "starting_point": ["START-AM","START-AM","START-M","START-M-2F","START-KB","START-KB","START-OSS"],
         "goal_point": [["ID7-1"],["ID7-1"],["ID7-2"],["ID7-2F"], ["ID1"], ["ID-EDU"],["ID5"]],
